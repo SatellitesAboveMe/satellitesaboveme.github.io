@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.d706b0e5.js",
-    "static/js/787.8f8cdd9c.chunk.js": "/static/js/787.8f8cdd9c.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.d706b0e5.js.map": "/static/js/main.d706b0e5.js.map",
-    "787.8f8cdd9c.chunk.js.map": "/static/js/787.8f8cdd9c.chunk.js.map"
+    "main.css": "/akechahmadze.github.io/satellitesaboveme/build/static/css/main.073c9b0a.css",
+    "main.js": "/akechahmadze.github.io/satellitesaboveme/build/static/js/main.92a41172.js",
+    "static/js/787.8f8cdd9c.chunk.js": "/akechahmadze.github.io/satellitesaboveme/build/static/js/787.8f8cdd9c.chunk.js",
+    "static/media/logo.svg": "/akechahmadze.github.io/satellitesaboveme/build/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/akechahmadze.github.io/satellitesaboveme/build/index.html",
+    "main.073c9b0a.css.map": "/akechahmadze.github.io/satellitesaboveme/build/static/css/main.073c9b0a.css.map",
+    "main.92a41172.js.map": "/akechahmadze.github.io/satellitesaboveme/build/static/js/main.92a41172.js.map",
+    "787.8f8cdd9c.chunk.js.map": "/akechahmadze.github.io/satellitesaboveme/build/static/js/787.8f8cdd9c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.d706b0e5.js"
+    "static/js/main.92a41172.js"
   ]
 }
