@@ -4,13 +4,15 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { scheme } from './validationScheme'
 import { satelliteCategories } from './satelliteCategories'
+import { satelliteTableStore } from '../../Stores/SatelliteTableStore'
+import { UserFormData } from '../../Requests/above'
 
 export const LocationForm = () => {
-  const onSubmit = (values: any) => {
-    console.log(values)
+  const onSubmit = (values: UserFormData) => {
+    satelliteTableStore.fetchData(values)
   }
 
-  const { control, handleSubmit, setValue } = useForm({
+  const { control, handleSubmit, setValue } = useForm<UserFormData>({
     resolver: yupResolver(scheme)
   })
 
@@ -57,7 +59,7 @@ export const LocationForm = () => {
       control={control}
       render={ ({ field, fieldState: { error } }) => {
         const value = field.value || ''
-        return <TextField error={!!error} onChange={(event) => setValue('category', event.target.value)} helperText={error?.message} select id="category" label="Satellite category" margin="normal" value={value}>
+        return <TextField error={!!error} onChange={(event) => setValue('category', parseInt(event.target.value))} helperText={error?.message} select id="category" label="Satellite category" margin="normal" value={value}>
         {
           satelliteCategories.map(
             satelliteCategory => <MenuItem key={satelliteCategory.id} value={satelliteCategory.id}>{satelliteCategory.name}</MenuItem>

@@ -10,7 +10,7 @@ interface SingleSatelliteData {
     satalt: number;
 }
 
-interface AboveData {
+export interface AboveData {
     info: {
         category: string;
         transactionscount: number;
@@ -19,13 +19,14 @@ interface AboveData {
     above: SingleSatelliteData[];
 }
 
-interface UserLocation {
+export interface UserFormData {
     latitude: number;
     longitude: number;
     radius: number;
+    category: number;
 }
 
-export const getAboveData = async ({ latitude, longitude, radius }: UserLocation): Promise<AboveData> => {
-  return fetch(`https://api.n2yo.com/rest/v1/satellite/above/${latitude}/${longitude}/0/${radius}/1?apiKey=${n2yoApiKey}`)
+export const getAboveData = async ({ latitude, longitude, radius, category }: UserFormData): Promise<AboveData> => {
+  return fetch(`https://api.n2yo.com/rest/v1/satellite/above/${latitude}/${longitude}/0/${radius}/${category}?apiKey=${n2yoApiKey}`)
     .then(response => response.json())
 }
