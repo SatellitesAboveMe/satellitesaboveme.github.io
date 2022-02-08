@@ -5,7 +5,7 @@ import './index.scss'
 
 export const Main = () => {
   return (
-    <Container maxWidth="sm">
+    <Container fixed>
         <h1>Input your location</h1>
         <LocationForm />
         <SatelliteTable />
