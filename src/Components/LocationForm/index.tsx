@@ -1,8 +1,9 @@
-import { TextField, FormGroup, Button } from '@mui/material'
+import { TextField, FormGroup, Button, MenuItem } from '@mui/material'
 import { useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { scheme } from './validationScheme'
+import { satelliteCategories } from './satelliteCategories'
 
 export const LocationForm = () => {
   const onSubmit = (values: any) => {
@@ -51,6 +52,21 @@ export const LocationForm = () => {
         }
         }
       />
+      <Controller
+      name="category"
+      control={control}
+      render={ ({ field, fieldState: { error } }) => {
+        const value = field.value || ''
+        return <TextField error={!!error} onChange={(event) => setValue('category', event.target.value)} helperText={error?.message} select id="category" label="Satellite category" margin="normal" value={value}>
+        {
+          satelliteCategories.map(
+            satelliteCategory => <MenuItem key={satelliteCategory.id} value={satelliteCategory.id}>{satelliteCategory.name}</MenuItem>
+          )
+        }
+         </TextField>
+      }}
+      />
+
       <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit)}>Find satellites above me!</Button>
     </FormGroup>
   )
