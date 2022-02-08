@@ -1,13 +1,12 @@
-import React from "react";
 import {
   BrowserRouter,
   Routes,
   Route
-} from "react-router-dom";
-import { Main } from "./RouteComponents/Main";
-import { SatelliteInfo } from "./RouteComponents/SatelliteInfo";
+} from 'react-router-dom'
+import { Main } from './RouteComponents/Main'
+import { SatelliteInfo } from './RouteComponents/SatelliteInfo'
 
-function App() {
+function App () {
   return (
     <BrowserRouter>
       <Routes>
@@ -16,7 +15,7 @@ function App() {
         <Route path='*' element={<h1>Not found!</h1>} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App
