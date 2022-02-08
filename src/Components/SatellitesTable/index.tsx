@@ -1,4 +1,4 @@
-import { RequestState, satelliteTableStore, SatelliteTableStore } from '../../Stores/SatelliteTableStore'
+import { RequestState, satelliteTableStore, SatelliteTableStoreContext } from '../../Stores/SatelliteTableStore'
 import { observer } from 'mobx-react-lite'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -7,16 +7,15 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { useContext } from 'react'
 
-type SatelliteTableProps = {
-    table: SatelliteTableStore;
-}
+const SatelliteTableComponent = observer(() => {
+  const table = useContext(SatelliteTableStoreContext)
 
-const SatelliteTableComponent = ({ table }: SatelliteTableProps) => {
   const { satelliteData, state } = table
-  console.log(state, satelliteData)
+
   const renderTable = () => {
-    switch (table.state) {
+    switch (state) {
       case RequestState.Error:
         return <span>Error!</span>
       case RequestState.Fetching:
@@ -60,8 +59,10 @@ const SatelliteTableComponent = ({ table }: SatelliteTableProps) => {
   }
 
   return renderTable()
-}
+})
 
-const SatelliteTableObserver = observer((props: SatelliteTableProps) => <SatelliteTableComponent {...props}/>)
-
-export const SatelliteTable = () => <SatelliteTableObserver table={satelliteTableStore} />
+export const SatelliteTable = () => (
+    <SatelliteTableStoreContext.Provider value={satelliteTableStore}>
+        <SatelliteTableComponent />
+    </SatelliteTableStoreContext.Provider>
+)

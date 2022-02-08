@@ -1,4 +1,5 @@
-import { makeAutoObservable, runInAction } from 'mobx'
+import { makeObservable, runInAction, observable, computed, action } from 'mobx'
+import { createContext } from 'react'
 import { AboveData, getAboveData, UserFormData } from '../Requests/above'
 
 export enum RequestState {
@@ -8,18 +9,20 @@ export enum RequestState {
 }
 
 export class SatelliteTableStore {
-  satelliteDataRaw?: AboveData
+  @observable satelliteDataRaw?: AboveData
 
-  state?: RequestState
+  @observable state?: RequestState
 
   constructor () {
-    makeAutoObservable(this)
+    makeObservable(this)
   }
 
+  @computed
   get satelliteData () {
     return this.satelliteDataRaw?.above || []
   }
 
+  @action.bound
   async fetchData (userLocation: UserFormData) {
     this.state = RequestState.Fetching
 
@@ -39,3 +42,4 @@ export class SatelliteTableStore {
 }
 
 export const satelliteTableStore = new SatelliteTableStore()
+export const SatelliteTableStoreContext = createContext<SatelliteTableStore>(satelliteTableStore)
