@@ -14,6 +14,7 @@
     "@types/node": "^16.11.22",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
+    "dotenv": "^16.0.0",
     "mobx": "^6.3.13",
     "mobx-react-lite": "^3.2.3",
     "react": "^17.0.2",
@@ -28,7 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -Force docs && mv build docs",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
