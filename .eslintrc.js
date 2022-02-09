@@ -15,6 +15,9 @@ module.exports = {
       }
     }
   },
+  globals: {
+    JSX: true
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
