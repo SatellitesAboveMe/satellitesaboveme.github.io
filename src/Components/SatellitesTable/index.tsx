@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useContext } from 'react'
 import { SingleSatelliteData } from 'api/above'
+import { Skeleton } from '@mui/material'
 
 interface RenderTableProps {
   ErrorComponent: JSX.Element;
@@ -67,6 +68,17 @@ const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]
   )
 }
 
+const FetchingComponent = () => {
+  return (
+    <>
+    <Skeleton />
+    <Skeleton />
+    <Skeleton />
+    <Skeleton />
+    </>
+  )
+}
+
 const SatelliteTableComponent = observer(() => {
   const table = useContext(SatelliteTableStoreContext)
 
@@ -75,7 +87,7 @@ const SatelliteTableComponent = observer(() => {
   return <RenderTable
   state={state}
   ErrorComponent={<span>Error!</span>}
-  FetchingComponent={<span>fetching</span>}
+  FetchingComponent={<FetchingComponent />}
   TableComponent={<TableComponent satelliteData={satelliteData}/>}
   />
 })
