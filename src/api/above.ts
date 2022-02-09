@@ -1,4 +1,4 @@
-interface SingleSatelliteData {
+export interface SingleSatelliteData {
     satid: number;
     satname: string;
     intDesignator: string;
