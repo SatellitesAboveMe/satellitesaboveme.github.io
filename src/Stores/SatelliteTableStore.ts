@@ -1,6 +1,6 @@
 import { makeObservable, runInAction, observable, computed, action } from 'mobx'
 import { createContext } from 'react'
-import { AboveData, getAboveData, UserFormData } from '../Requests/above'
+import { AboveData, getAboveData, UserFormData } from 'api/above'
 
 export enum RequestState {
   Fetching = 'pending',
