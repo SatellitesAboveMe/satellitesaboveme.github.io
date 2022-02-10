@@ -2,10 +2,9 @@ import { TextField, FormGroup, Button, MenuItem, Box } from '@mui/material'
 import { useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { scheme } from 'components/LocationForm/scheme'
-import { satelliteCategories } from 'components/LocationForm/satelliteCategories'
+import { scheme } from 'components/locationForm/scheme'
 import { satelliteTableStore } from 'stores/satelliteTableStore'
-import { UserFormData } from 'api/above'
+import { UserFormData, satelliteCategories } from 'api/above'
 
 export const LocationForm = () => {
   const onSubmit = (values: UserFormData) => {
