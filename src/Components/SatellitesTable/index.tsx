@@ -1,4 +1,4 @@
-import { RequestState, satelliteTableStore, SatelliteTableStoreContext } from 'stores/satelliteTableStore'
+import { satelliteTableStore, SatelliteTableStoreContext } from 'stores/satelliteTableStore'
 import { observer } from 'mobx-react-lite'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -7,9 +7,12 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { makeStyles } from '@mui/styles'
 import { useContext } from 'react'
 import { SingleSatelliteData } from 'api/above'
-import { Skeleton } from '@mui/material'
+import { RequestState } from 'api/state'
+import { FetchingComponent } from 'components/fetching'
+import { useNavigate } from 'react-router-dom'
 
 interface RenderTableProps {
   ErrorComponent: JSX.Element;
@@ -34,6 +37,17 @@ const RenderTable = (props: RenderTableProps) => {
 }
 
 const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]}) => {
+  const useStyles = makeStyles(() => ({
+    hover: {
+      '&:hover': {
+        cursor: 'pointer'
+      }
+    }
+  }))
+
+  const navigate = useNavigate()
+
+  const classes = useStyles()
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -51,7 +65,7 @@ const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]
           {
             satelliteData.map(
               satellite => (
-                <TableRow key={satellite.satid}>
+                <TableRow hover classes={{ hover: classes.hover }} key={satellite.satid} onClick={() => navigate(`satelliteInfo/${satellite.satid}`)}>
                   <TableCell align="right">{satellite.satid}</TableCell>
                     <TableCell align="right">{satellite.satname}</TableCell>
                     <TableCell align="right">{satellite.launchDate}</TableCell>
@@ -65,17 +79,6 @@ const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]
         </TableBody>
       </Table>
     </TableContainer>
-  )
-}
-
-const FetchingComponent = () => {
-  return (
-    <>
-    <Skeleton />
-    <Skeleton />
-    <Skeleton />
-    <Skeleton />
-    </>
   )
 }
 
