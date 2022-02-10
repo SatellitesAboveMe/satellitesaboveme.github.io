@@ -12,12 +12,6 @@ export const getTleData = async (satelliteId: number): Promise<TLEData> => {
   return fetch(`https://api.n2yo.com/rest/v1/satellite/tle/${satelliteId}&apiKey=${process.env.REACT_APP_N2YO_API_KEY}`)
     .then(response => response.json())
     // mock
-    .catch(() => ({
-      info: {
-        satid: 25544,
-        satname: 'SPACE STATION',
-        transactionscount: 4
-      },
-      tle: '1 25544U 98067A   18077.09047010  .00001878  00000-0  35621-4 0  9999\r\n2 25544  51.6412 112.8495 0001928 208.4187 178.9720 15.54106440104358'
-    }))
+    .catch(() => (
+      { info: { satid: 5, satname: 'VANGUARD 1', transactionscount: 9 }, tle: '1 00005U 58002B   22040.50620942  .00000353  00000-0  44186-3 0  9993\r\n2 00005  34.2438 173.6162 1843415 181.7014 177.6495 10.84857170270644' }))
 }

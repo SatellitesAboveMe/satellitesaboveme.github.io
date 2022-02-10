@@ -30,6 +30,66 @@ export interface ParsedTLE {
       }
 }
 
+type TLEMappingType = {
+  line1: {
+    'Line Number': 'lineNumber',
+    'Satellite catalog number': 'catalogNumber',
+    'Classification': 'classification',
+    'International Designator (launch number of the year)': 'internationalDesignatorYear',
+    'International Designator (piece of the launch)': 'internationalDesignatorLaunch',
+    'Epoch year (last two digits of year)': 'epochYear',
+    'Epoch (day of the year and fractional portion of the day)': 'epoch',
+    'First derivative of mean motion': 'meanMotionFirstDerivative',
+    'Second derivative of mean motion': 'meanMotionSecondDerivative',
+    'The drag term, or radiation pressure coefficient': 'drag',
+    'Ephemeris type': 'ephemerisType',
+    'Element set number': 'elementSetNumber',
+    'Checksum': 'checksum'
+  },
+  line2: {
+    'Line Number': 'lineNumber',
+    'Satellite catalog number': 'catalogNumber',
+    'Inclination (degrees)': 'inclination',
+    'Right ascension of the ascending node (degrees)': 'rightAscension',
+    'Eccentricity (decimal point assumed)': 'eccentricity',
+    'Argument of perigee (degrees)': 'perigee',
+    'Mean anomaly (degrees)': 'meanAnomaly',
+    'Mean motion (revolutions per day)': 'meanMotion',
+    'Revolution number at epoch (revolutions)': 'revolutionNumber',
+    'Checksum': 'checksum'
+  }
+}
+
+export const TLEMapping: TLEMappingType = {
+  line1: {
+    'Line Number': 'lineNumber',
+    'Satellite catalog number': 'catalogNumber',
+    Classification: 'classification',
+    'International Designator (launch number of the year)': 'internationalDesignatorYear',
+    'International Designator (piece of the launch)': 'internationalDesignatorLaunch',
+    'Epoch year (last two digits of year)': 'epochYear',
+    'Epoch (day of the year and fractional portion of the day)': 'epoch',
+    'First derivative of mean motion': 'meanMotionFirstDerivative',
+    'Second derivative of mean motion': 'meanMotionSecondDerivative',
+    'The drag term, or radiation pressure coefficient': 'drag',
+    'Ephemeris type': 'ephemerisType',
+    'Element set number': 'elementSetNumber',
+    Checksum: 'checksum'
+  },
+  line2: {
+    'Line Number': 'lineNumber',
+    'Satellite catalog number': 'catalogNumber',
+    'Inclination (degrees)': 'inclination',
+    'Right ascension of the ascending node (degrees)': 'rightAscension',
+    'Eccentricity (decimal point assumed)': 'eccentricity',
+    'Argument of perigee (degrees)': 'perigee',
+    'Mean anomaly (degrees)': 'meanAnomaly',
+    'Mean motion (revolutions per day)': 'meanMotion',
+    'Revolution number at epoch (revolutions)': 'revolutionNumber',
+    Checksum: 'checksum'
+  }
+}
+
 export const parseTLE = (satelliteData: TLEData): ParsedTLE => {
   const lines = satelliteData.tle.split('\r\n')
   return {

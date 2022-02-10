@@ -1,42 +1,61 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { TLETable } from 'components/TLETable'
-import { getTleData, TLEData } from 'api/tle'
-import { parseTLE } from 'utils/parseTLE'
+import { TLETable } from 'components/tleTable'
+import { singleSatelliteInfoStore, SingleSatelliteInfoStoreContext } from '../../stores/singleSatelliteInfoStore'
+import { RequestState } from 'api/state'
+import { observer } from 'mobx-react-lite'
+import { useContext, useEffect } from 'react'
+import { FetchingComponent } from 'components/fetching'
 
-export const SatelliteInfo = () => {
-  const [satelliteData, setSatelliteData] = useState<TLEData>()
-  const [isFetching, setIsFetching] = useState(true)
+interface RenderSatelliteInfoProps {
+  ErrorComponent: JSX.Element;
+  FetchingComponent: JSX.Element,
+  InfoComponent: JSX.Element,
+  state?: RequestState
+}
+
+const RenderSatelliteInfo = (props: RenderSatelliteInfoProps) => {
+  const { state, ErrorComponent, FetchingComponent, InfoComponent } = props
+
+  switch (state) {
+    case RequestState.Error:
+      return ErrorComponent
+    case RequestState.Fetching:
+      return FetchingComponent
+    case RequestState.Done:
+      return InfoComponent
+    default:
+      return <></>
+  }
+}
+
+const SingleSatelliteInfoComponent = observer(() => {
+  const singleSatelliteInfo = useContext(SingleSatelliteInfoStoreContext)
+
+  const { singleSatelliteData: data, state, parsedTLEData } = singleSatelliteInfo
 
   const { id = '0' } = useParams()
 
   useEffect(() => {
-    (async () => {
-      const satelliteId = parseInt(id)
-      try {
-        const data = await getTleData(satelliteId)
-        setSatelliteData(data)
-      } catch (e) {
-        setSatelliteData(undefined)
-      }
-      setIsFetching(false)
-    })()
+    singleSatelliteInfo.fetchData(parseInt(id))
   }, [])
 
-  const renderSatelliteInfo = () => {
-    if (isFetching) return <span>Loading...</span>
-    if (!satelliteData) return <span>Error!</span>
-
-    const parsedTLEData = satelliteData && parseTLE(satelliteData)
-
-    return (
-      <>
-        <h1>{satelliteData.info.satname}</h1>
-        <TLETable tle={parsedTLEData}/>
-      </>
-    )
+  return <RenderSatelliteInfo
+  state={state}
+  ErrorComponent={<span>Error!</span>}
+  FetchingComponent={<FetchingComponent />}
+  InfoComponent={
+    <>
+    <h1>{data?.info.satname}</h1>
+    {
+      parsedTLEData ? <TLETable tle={parsedTLEData!} /> : <span>No TLE data available</span>
+    }
+    </>
   }
+  />
+})
 
-  return renderSatelliteInfo()
-}
+export const SatelliteInfo = () => (
+  <SingleSatelliteInfoStoreContext.Provider value={singleSatelliteInfoStore}>
+    <SingleSatelliteInfoComponent />
+  </SingleSatelliteInfoStoreContext.Provider>
+)
