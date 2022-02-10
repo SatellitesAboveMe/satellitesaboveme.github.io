@@ -1,5 +1,5 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import { ParsedTLE } from '../../Utils/parseTLE'
+import { ParsedTLE } from 'utils/parseTLE'
 
 interface TLETableProps {
     tle: ParsedTLE

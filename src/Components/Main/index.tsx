@@ -1,7 +1,7 @@
 import { Container } from '@mui/material'
-import { LocationForm } from '../../Components/LocationForm'
-import { SatelliteTable } from '../../Components/SatellitesTable'
-import './index.scss'
+import { LocationForm } from 'components/LocationForm'
+import { SatelliteTable } from 'components/SatellitesTable'
+import 'components/Main/Main.scss'
 
 export const Main = () => {
   return (

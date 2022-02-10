@@ -1,11 +1,11 @@
-import { TextField, FormGroup, Button, MenuItem } from '@mui/material'
+import { TextField, FormGroup, Button, MenuItem, Box } from '@mui/material'
 import { useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { scheme } from './validationScheme'
-import { satelliteCategories } from './satelliteCategories'
-import { satelliteTableStore } from '../../Stores/SatelliteTableStore'
-import { UserFormData } from '../../Requests/above'
+import { scheme } from 'components/LocationForm/scheme'
+import { satelliteCategories } from 'components/LocationForm/satelliteCategories'
+import { satelliteTableStore } from 'stores/satelliteTableStore'
+import { UserFormData } from 'api/above'
 
 export const LocationForm = () => {
   const onSubmit = (values: UserFormData) => {
@@ -27,7 +27,8 @@ export const LocationForm = () => {
   }, [setValue])
 
   return (
-    <FormGroup onSubmit={() => console.log(123)}>
+    <Box mb={3}>
+    <FormGroup>
       <Controller
         name="latitude"
         control={control}
@@ -71,5 +72,6 @@ export const LocationForm = () => {
 
       <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit)}>Find satellites above me!</Button>
     </FormGroup>
+    </Box>
   )
 }

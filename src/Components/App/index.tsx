@@ -3,8 +3,8 @@ import {
   Routes,
   Route
 } from 'react-router-dom'
-import { Main } from './RouteComponents/Main'
-import { SatelliteInfo } from './RouteComponents/SatelliteInfo'
+import { Main } from 'components/Main'
+import { SatelliteInfo } from 'components/SatelliteInfo'
 
 function App () {
   return (

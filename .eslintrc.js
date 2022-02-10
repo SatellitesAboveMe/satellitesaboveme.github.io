@@ -7,6 +7,17 @@ module.exports = {
     'plugin:react/recommended',
     'standard'
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src', 'src/'],
+        moduleDirectory: ['node_modules', 'src/']
+      }
+    }
+  },
+  globals: {
+    JSX: true
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {

@@ -1,4 +1,4 @@
-import { TLEData } from '../Requests/tle'
+import { TLEData } from 'api/tle'
 
 export interface ParsedTLE {
     line1: {

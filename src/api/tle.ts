@@ -1,5 +1,3 @@
-import { n2yoApiKey } from '../apiKey'
-
 export interface TLEData {
     info:{
         satid: number;
@@ -11,8 +9,10 @@ export interface TLEData {
 }
 
 export const getTleData = async (satelliteId: number): Promise<TLEData> => {
-  return fetch(`https://api.n2yo.com/rest/v1/satellite/tle/${satelliteId}&apiKey=${n2yoApiKey}`)
-    .then(response => response.json()).catch(() => ({
+  return fetch(`https://api.n2yo.com/rest/v1/satellite/tle/${satelliteId}&apiKey=${process.env.REACT_APP_N2YO_API_KEY}`)
+    .then(response => response.json())
+    // mock
+    .catch(() => ({
       info: {
         satid: 25544,
         satname: 'SPACE STATION',

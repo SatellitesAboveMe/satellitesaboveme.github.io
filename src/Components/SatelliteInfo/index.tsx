@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { TLETable } from '../../Components/TLETable'
-import { getTleData, TLEData } from '../../Requests/tle'
-import { parseTLE } from '../../Utils/parseTLE'
+import { TLETable } from 'components/TLETable'
+import { getTleData, TLEData } from 'api/tle'
+import { parseTLE } from 'utils/parseTLE'
 
 export const SatelliteInfo = () => {
   const [satelliteData, setSatelliteData] = useState<TLEData>()
