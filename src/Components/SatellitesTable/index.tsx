@@ -10,31 +10,8 @@ import Paper from '@mui/material/Paper'
 import { makeStyles } from '@mui/styles'
 import { useContext } from 'react'
 import { SingleSatelliteData } from 'api/above'
-import { RequestState } from 'api/state'
-import { FetchingComponent } from 'components/fetching'
 import { useNavigate } from 'react-router-dom'
-
-interface RenderTableProps {
-  ErrorComponent: JSX.Element;
-  FetchingComponent: JSX.Element,
-  TableComponent: JSX.Element,
-  state?: RequestState
-}
-
-const RenderTable = (props: RenderTableProps) => {
-  const { state, ErrorComponent, FetchingComponent, TableComponent } = props
-
-  switch (state) {
-    case RequestState.Error:
-      return ErrorComponent
-    case RequestState.Fetching:
-      return FetchingComponent
-    case RequestState.Done:
-      return TableComponent
-    default:
-      return <></>
-  }
-}
+import { RenderDependingOnState } from 'components/renderDependingOnState'
 
 const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]}) => {
   const useStyles = makeStyles(() => ({
@@ -87,11 +64,9 @@ const SatelliteTableComponent = observer(() => {
 
   const { satelliteData, state } = table
 
-  return <RenderTable
+  return <RenderDependingOnState
   state={state}
-  ErrorComponent={<span>Error!</span>}
-  FetchingComponent={<FetchingComponent />}
-  TableComponent={<TableComponent satelliteData={satelliteData}/>}
+  InfoComponent={<TableComponent satelliteData={satelliteData}/>}
   />
 })
 
