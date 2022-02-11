@@ -1,5 +1,5 @@
 import { Paper, Table, TableCell, TableContainer, TableRow, Grid, Container } from '@mui/material'
-import { ParsedTLE, TLEMapping } from 'utils/parseTLE'
+import { ParsedTLE, TLEMapping, TLEProperty } from 'utils/parseTLE'
 
 interface TLETableProps {
     tle: ParsedTLE
@@ -14,10 +14,10 @@ export const TLETable = ({ tle }: TLETableProps) => {
                 <Table aria-label="simple table">
                     {
                         Object.entries(TLEMapping.line1).map(
-                          ([name, propertyName]) => (
+                          ([propertyName, name]) => (
                                 <TableRow key={propertyName}>
                                     <TableCell variant="head">{name}</TableCell>
-                                    <TableCell>{(tle.line1)[propertyName]}</TableCell>
+                                    <TableCell>{(tle.line1)[propertyName as TLEProperty]}</TableCell>
                                 </TableRow>
                           )
                         )
@@ -30,10 +30,10 @@ export const TLETable = ({ tle }: TLETableProps) => {
                 <Table aria-label="simple table">
                     {
                         Object.entries(TLEMapping.line2).map(
-                          ([name, propertyName]) => (
+                          ([propertyName, name]) => (
                                 <TableRow key={propertyName}>
                                     <TableCell variant="head">{name}</TableCell>
-                                    <TableCell>{(tle.line2)[propertyName]}</TableCell>
+                                    <TableCell>{(tle.line2)[propertyName as TLEProperty]}</TableCell>
                                 </TableRow>
                           )
                         )
