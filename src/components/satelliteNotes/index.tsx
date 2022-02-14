@@ -1,38 +1,39 @@
 import { useContext } from 'react'
 import { satelliteNotesStore, SatelliteNotesStoreContext } from 'stores/satelliteNotesStore'
 import { NotesForm } from 'components/notesForm'
-import { computed } from 'mobx'
+import { observer } from 'mobx-react-lite'
+import { Note } from 'components/satelliteNotes/note'
+import { Container, Grid } from '@mui/material'
 
 interface SatelliteNotesProps {
     id: number
 }
 
-const SatelliteNotesComponent = (props: SatelliteNotesProps) => {
+const SatelliteNotesComponent = observer((props: SatelliteNotesProps) => {
   const { id } = props
 
   const notesStore = useContext(SatelliteNotesStoreContext)
 
-  const notes = computed(() => notesStore.getSatelliteNotes(id)).get()
-
-  console.log(notes)
+  const notes = notesStore.getSatelliteNotes(id)
 
   return (
-      <>
+    <>
+    <h2>Notes:</h2>
       {
           notes
-            ? <>
-          {notes.map((note, index) => <span key={index}>
-              <h1>{note.title}</h1>
-              <p>{note.text}</p>
-              </span>
-          )}
-          </>
+            ? (
+            <Grid container spacing={2}>
+                {notes.map((note, index) => <Note key={index} {...note} />)}
+            </Grid>
+              )
             : <span>There are no notes</span>
       }
+      <Container maxWidth={'xs'}>
       <NotesForm id={id}/>
+      </Container>
       </>
   )
-}
+})
 
 const SatelliteNotes = (props: SatelliteNotesProps) => (
     <SatelliteNotesStoreContext.Provider value={satelliteNotesStore}>

@@ -34,7 +34,7 @@ export const NotesForm = (props: NotesFormProps) => {
   const { control, handleSubmit } = useForm<NoteSubmitData>()
 
   return (
-    <Container maxWidth={'xs'}>
+
         <FormGroup>
             <Controller
                name='title'
@@ -44,10 +44,10 @@ export const NotesForm = (props: NotesFormProps) => {
             <Controller
                name='text'
                control={control}
-               render={props => <ControlledTextField id={'text'} label={'Text'} multiline minRows={3} inputProps={{ maxLength: 100 }} {...props}/>}
+               render={props => <ControlledTextField id={'text'} label={'Text'} multiline minRows={3} inputProps={{ maxLength: 400 }} {...props}/>}
             />
             <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit)}>Save note</Button>
         </FormGroup>
-    </Container>
+
   )
 }
