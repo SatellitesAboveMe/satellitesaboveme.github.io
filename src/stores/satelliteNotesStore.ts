@@ -1,15 +1,16 @@
 import { makeObservable, observable, action } from 'mobx'
 import { createContext } from 'react'
 
-type Note = {
+export type Note = {
     title?: string;
     text: string;
 }
 
 export class SatelliteNotesStore {
-  private notesStore: Map<number, Note[]> = observable.map(new Map())
+  private notesStore: Map<number, Note[]>
 
   constructor () {
+    this.notesStore = observable.map({})
     makeObservable(this)
   }
 
@@ -17,7 +18,7 @@ export class SatelliteNotesStore {
     return this.notesStore.get(id)
   }
 
-    @action.bound
+  @action.bound
   addSatelliteNote (id: number, note: Note) {
     if (!this.notesStore.has(id)) {
       this.notesStore.set(id, [])
