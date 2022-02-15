@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, Container, FormGroup, StandardTextFieldProps, TextField, InputAdornment } from '@mui/material'
 import { Controller, ControllerFieldState, ControllerRenderProps, FieldValue, FieldValues, Path, useForm } from 'react-hook-form'
 import { satelliteNotesStore } from 'stores/satelliteNotesStore'
@@ -35,8 +34,8 @@ export const NotesForm = (props: NotesFormProps) => {
   const { control, handleSubmit } = useForm<NoteSubmitData>()
 
   return (
-
-        <FormGroup>
+  <Box mb={4}>
+    <FormGroup>
             <Controller
                name='title'
                control={control}
@@ -50,7 +49,7 @@ export const NotesForm = (props: NotesFormProps) => {
                {...props}/>}
             />
             <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit)}>Save note</Button>
-        </FormGroup>
-
+      </FormGroup>
+  </Box>
   )
 }
