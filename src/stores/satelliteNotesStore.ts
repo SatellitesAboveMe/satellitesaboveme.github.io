@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from 'mobx'
+import { makeObservable, observable, action, ObservableMap } from 'mobx'
 import { createContext, useContext } from 'react'
 
 export type Note = {
@@ -7,10 +7,9 @@ export type Note = {
 }
 
 export class SatelliteNotesStore {
-  private notesStore: Map<number, Note[]>
+  @observable private notesStore: ObservableMap<number, Note[]> = new ObservableMap()
 
   constructor () {
-    this.notesStore = observable.map({})
     makeObservable(this)
   }
 
