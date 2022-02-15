@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Button, Container, FormGroup, StandardTextFieldProps, TextField, TextFieldProps } from '@mui/material'
+import { Box, Button, Container, FormGroup, StandardTextFieldProps, TextField, InputAdornment } from '@mui/material'
 import { Controller, ControllerFieldState, ControllerRenderProps, FieldValue, FieldValues, Path, useForm } from 'react-hook-form'
 import { satelliteNotesStore } from 'stores/satelliteNotesStore'
+import { MDTooltip } from './mdTooltip'
 
 type NoteSubmitData = {
     title?: string;
@@ -44,7 +45,9 @@ export const NotesForm = (props: NotesFormProps) => {
             <Controller
                name='text'
                control={control}
-               render={props => <ControlledTextField id={'text'} label={'Text'} multiline minRows={3} inputProps={{ maxLength: 400 }} {...props}/>}
+               render={props => <ControlledTextField id={'text'} label={'Text'} multiline minRows={3} inputProps={{ maxLength: 400 }}
+               InputProps={{ endAdornment: <MDTooltip /> }}
+               {...props}/>}
             />
             <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit)}>Save note</Button>
         </FormGroup>
