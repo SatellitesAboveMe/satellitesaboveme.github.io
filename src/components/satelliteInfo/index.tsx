@@ -1,14 +1,14 @@
 import { useParams } from 'react-router-dom'
 import { TLETable } from 'components/tleTable'
-import { singleSatelliteInfoStore, SingleSatelliteInfoStoreContext } from '../../stores/singleSatelliteInfoStore'
+import { singleSatelliteInfoStore, useSingleSatelliteInfoStore, SingleSatelliteInfoStoreContext } from '../../stores/singleSatelliteInfoStore'
 import { observer } from 'mobx-react-lite'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { RenderDependingOnState } from 'components/renderDependingOnState'
 import { Container } from '@mui/material'
 import SatelliteNotes from 'components/satelliteNotes'
 
 const SingleSatelliteInfoComponent = observer(() => {
-  const singleSatelliteInfo = useContext(SingleSatelliteInfoStoreContext)
+  const singleSatelliteInfo = useSingleSatelliteInfoStore()
 
   const { singleSatelliteData: data, state, parsedTLEData } = singleSatelliteInfo
 

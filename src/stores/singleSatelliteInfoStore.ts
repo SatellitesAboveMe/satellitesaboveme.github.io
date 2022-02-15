@@ -1,6 +1,6 @@
 import { RequestState } from 'api/state'
 import { TLEData, getTleData } from 'api/tle'
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
 import { makeObservable, runInAction, observable, computed, action } from 'mobx'
 import { parseTLE } from 'utils/parseTLE'
 
@@ -40,3 +40,6 @@ export class SingleSatelliteDataStore {
 
 export const singleSatelliteInfoStore = new SingleSatelliteDataStore()
 export const SingleSatelliteInfoStoreContext = createContext<SingleSatelliteDataStore>(singleSatelliteInfoStore)
+export const useSingleSatelliteInfoStore = (): SingleSatelliteDataStore => {
+  return useContext(SingleSatelliteInfoStoreContext)
+}

@@ -1,5 +1,5 @@
 import { makeObservable, observable, action } from 'mobx'
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
 
 export type Note = {
     title?: string;
@@ -29,3 +29,6 @@ export class SatelliteNotesStore {
 
 export const satelliteNotesStore = new SatelliteNotesStore()
 export const SatelliteNotesStoreContext = createContext<SatelliteNotesStore>(satelliteNotesStore)
+export const useSatelliteNotesStore = (): SatelliteNotesStore => {
+  return useContext(SatelliteNotesStoreContext)
+}

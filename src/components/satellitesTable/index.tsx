@@ -1,4 +1,4 @@
-import { satelliteTableStore, SatelliteTableStoreContext } from 'stores/satelliteTableStore'
+import { satelliteTableStore, SatelliteTableStoreContext, useSatelliteTableStore } from 'stores/satelliteTableStore'
 import { observer } from 'mobx-react-lite'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -8,7 +8,6 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { makeStyles } from '@mui/styles'
-import { useContext } from 'react'
 import { SingleSatelliteData } from 'api/above'
 import { useNavigate } from 'react-router-dom'
 import { RenderDependingOnState } from 'components/renderDependingOnState'
@@ -60,7 +59,7 @@ const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]
 }
 
 const SatelliteTableComponent = observer(() => {
-  const table = useContext(SatelliteTableStoreContext)
+  const table = useSatelliteTableStore()
 
   const { satelliteData, state } = table
 
