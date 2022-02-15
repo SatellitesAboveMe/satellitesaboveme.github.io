@@ -1,4 +1,4 @@
-import { RequestState, satelliteTableStore, SatelliteTableStoreContext } from '../../stores/satelliteTableStore'
+import { satelliteTableStore, SatelliteTableStoreContext } from 'stores/satelliteTableStore'
 import { observer } from 'mobx-react-lite'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -7,33 +7,24 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { makeStyles } from '@mui/styles'
 import { useContext } from 'react'
 import { SingleSatelliteData } from 'api/above'
-import { Skeleton } from '@mui/material'
-
-interface RenderTableProps {
-  ErrorComponent: JSX.Element;
-  FetchingComponent: JSX.Element,
-  TableComponent: JSX.Element,
-  state?: RequestState
-}
-
-const RenderTable = (props: RenderTableProps) => {
-  const { state, ErrorComponent, FetchingComponent, TableComponent } = props
-
-  switch (state) {
-    case RequestState.Error:
-      return ErrorComponent
-    case RequestState.Fetching:
-      return FetchingComponent
-    case RequestState.Done:
-      return TableComponent
-    default:
-      return <></>
-  }
-}
+import { useNavigate } from 'react-router-dom'
+import { RenderDependingOnState } from 'components/renderDependingOnState'
 
 const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]}) => {
+  const useStyles = makeStyles(() => ({
+    hover: {
+      '&:hover': {
+        cursor: 'pointer'
+      }
+    }
+  }))
+
+  const navigate = useNavigate()
+
+  const classes = useStyles()
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -51,7 +42,7 @@ const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]
           {
             satelliteData.map(
               satellite => (
-                <TableRow key={satellite.satid}>
+                <TableRow hover classes={{ hover: classes.hover }} key={satellite.satid} onClick={() => navigate(`satelliteInfo/${satellite.satid}`)}>
                   <TableCell align="right">{satellite.satid}</TableCell>
                     <TableCell align="right">{satellite.satname}</TableCell>
                     <TableCell align="right">{satellite.launchDate}</TableCell>
@@ -68,27 +59,14 @@ const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]
   )
 }
 
-const FetchingComponent = () => {
-  return (
-    <>
-    <Skeleton />
-    <Skeleton />
-    <Skeleton />
-    <Skeleton />
-    </>
-  )
-}
-
 const SatelliteTableComponent = observer(() => {
   const table = useContext(SatelliteTableStoreContext)
 
   const { satelliteData, state } = table
 
-  return <RenderTable
+  return <RenderDependingOnState
   state={state}
-  ErrorComponent={<span>Error!</span>}
-  FetchingComponent={<FetchingComponent />}
-  TableComponent={<TableComponent satelliteData={satelliteData}/>}
+  InfoComponent={<TableComponent satelliteData={satelliteData}/>}
   />
 })
 

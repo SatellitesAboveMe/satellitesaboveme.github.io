@@ -19,19 +19,19 @@ const SatelliteNotesComponent = observer((props: SatelliteNotesProps) => {
   return (
     <>
     <h2>Notes:</h2>
-      {
-          notes
-            ? (
-            <Grid container spacing={2}>
-                {notes.map((note, index) => <Note key={index} {...note} />)}
-            </Grid>
-              )
-            : <span>There are no notes</span>
-      }
-      <Container maxWidth={'xs'}>
-      <NotesForm id={id}/>
-      </Container>
-      </>
+    {
+    notes
+      ? (
+    <Grid container spacing={2}>
+      {notes.map((note, index) => <Note key={index} {...note} />)}
+    </Grid>
+        )
+      : <span>There are no notes</span>
+    }
+    <Container maxWidth={'xs'}>
+    <NotesForm id={id}/>
+    </Container>
+    </>
   )
 })
 
