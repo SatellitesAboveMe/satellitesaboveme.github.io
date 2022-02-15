@@ -35,7 +35,8 @@ export const NotesForm = (props: NotesFormProps) => {
 
   return (
   <Box mb={4}>
-    <FormGroup>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormGroup>
             <Controller
                name='title'
                control={control}
@@ -48,8 +49,9 @@ export const NotesForm = (props: NotesFormProps) => {
                InputProps={{ endAdornment: <MDTooltip /> }}
                {...props}/>}
             />
-            <Button variant="contained" type="submit" onClick={handleSubmit(onSubmit)}>Save note</Button>
+            <Button variant="contained" type="submit">Save note</Button>
       </FormGroup>
+    </form>
   </Box>
   )
 }
