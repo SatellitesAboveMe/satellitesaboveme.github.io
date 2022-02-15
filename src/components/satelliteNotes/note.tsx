@@ -1,5 +1,6 @@
 import { Card, Typography, CardContent, Grid } from '@mui/material'
 import { Note as NoteType } from 'stores/satelliteNotesStore'
+import ReactMarkdown from 'react-markdown'
 
 export const Note = (props: NoteType) => {
   const {
@@ -14,9 +15,9 @@ export const Note = (props: NoteType) => {
                 <Typography variant="h5" align='center'>
                     {title}
                 </Typography>
-                <Typography variant="body2">
-                    {text}
-                </Typography>
+                <ReactMarkdown>
+                  {text}
+                </ReactMarkdown>
             </CardContent>
         </Card>
     </Grid>
