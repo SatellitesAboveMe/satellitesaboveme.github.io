@@ -1,16 +1,22 @@
 import { makeObservable, observable, action, ObservableMap } from 'mobx'
 import { createContext, useContext } from 'react'
+import { makePersistable } from 'mobx-persist-store'
 
 export type Note = {
-    title?: string;
-    text: string;
+  title?: string;
+  text: string;
 }
 
 export class SatelliteNotesStore {
-  @observable private notesStore: ObservableMap<number, Note[]> = new ObservableMap()
+  @observable notesStore: ObservableMap<number, Note[]> = new ObservableMap()
 
   constructor () {
     makeObservable(this)
+    makePersistable(this, {
+      name: 'SatelliteNotesStore',
+      storage: window.localStorage,
+      properties: ['notesStore']
+    })
   }
 
   getSatelliteNotes (id: number) {
@@ -22,7 +28,7 @@ export class SatelliteNotesStore {
     if (!this.notesStore.has(id)) {
       this.notesStore.set(id, [])
     }
-      this.notesStore.get(id)!.push(note)
+    this.notesStore.get(id)!.push(note)
   }
 }
 
