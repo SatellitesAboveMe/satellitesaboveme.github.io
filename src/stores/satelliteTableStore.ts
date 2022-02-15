@@ -1,12 +1,7 @@
 import { makeObservable, runInAction, observable, computed, action } from 'mobx'
 import { createContext } from 'react'
 import { AboveData, getAboveData, UserFormData } from 'api/above'
-
-export enum RequestState {
-  Fetching = 'pending',
-  Done = 'done',
-  Error = 'error'
-}
+import { RequestState } from 'api/state'
 
 export class SatelliteTableStore {
   @observable satelliteDataRaw?: AboveData
