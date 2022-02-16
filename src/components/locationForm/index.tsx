@@ -34,7 +34,7 @@ export const LocationForm = () => {
             control={control}
             render={({ field, fieldState: { error } }) => {
               const value = field.value || ''
-              return <TextField error={!!error} helperText={error?.message} id="latitude" label="Latitute" variant="outlined" margin="normal" {...field} value={value} />
+              return <TextField error={!!error} helperText={error?.message} id="latitude" label="Latitude" variant="outlined" margin="normal" {...field} value={value} />
             }}
           />
           <Controller
