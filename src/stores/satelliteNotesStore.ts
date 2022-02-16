@@ -1,6 +1,5 @@
-import { makeObservable, observable, action, ObservableMap } from 'mobx'
+import { makeObservable, observable, action, ObservableMap, autorun } from 'mobx'
 import { createContext, useContext } from 'react'
-import { makePersistable } from 'mobx-persist-store'
 
 export type Note = {
   title?: string;
@@ -8,27 +7,49 @@ export type Note = {
 }
 
 export class SatelliteNotesStore {
-  @observable notesStore: ObservableMap<number, Note[]> = new ObservableMap()
+  @observable private notesStore: ObservableMap<string, Note[]> = new ObservableMap()
 
   constructor () {
+    this.getFromLocalStorage()
     makeObservable(this)
-    makePersistable(this, {
-      name: 'SatelliteNotesStore',
-      storage: window.localStorage,
-      properties: ['notesStore']
+    autorun(() => this.updateLocalStorage())
+    this.subscribeToLocalStorage()
+  }
+
+  private subscribeToLocalStorage () {
+    window.addEventListener('storage', () => {
+      this.getFromLocalStorage()
     })
   }
 
   getSatelliteNotes (id: number) {
-    return this.notesStore.get(id)
+    return this.notesStore.get(id.toString())
   }
 
   @action.bound
   addSatelliteNote (id: number, note: Note) {
-    if (!this.notesStore.has(id)) {
-      this.notesStore.set(id, [])
+    const stringId = id.toString()
+    if (!this.notesStore.has(stringId)) {
+      this.notesStore.set(stringId, [])
     }
-    this.notesStore.get(id)!.push(note)
+    this.notesStore.get(stringId)!.push(note)
+  }
+
+  private updateLocalStorage () {
+    const object = Object.fromEntries(this.notesStore)
+    localStorage.setItem('SatelliteNotesStore', JSON.stringify(object))
+  }
+
+  @action.bound
+  getFromLocalStorage () {
+    const data = localStorage.getItem('SatelliteNotesStore')
+    if (data === null) {
+      this.notesStore = new ObservableMap()
+      this.updateLocalStorage()
+    } else {
+      const object = JSON.parse(data)
+      this.notesStore = new ObservableMap(object)
+    }
   }
 }
 
