@@ -47,7 +47,12 @@ export class SatelliteNotesStore {
       this.notesStore = new ObservableMap()
       this.updateLocalStorage()
     } else {
-      const object = JSON.parse(data)
+      let object
+      try {
+        object = JSON.parse(data)
+      } catch (e) {
+        object = {}
+      }
       this.notesStore = new ObservableMap(object)
     }
   }
