@@ -59,7 +59,7 @@ const SingleSatelliteInfoComponent = observer(() => {
         {
           idIsNumber
             ? <InfoComponent id={parsedId} satelliteData={singleSatelliteInfo} />
-            : <span>Wrong satellite id!</span>
+            : <span data-testid='wrong-satellite-id-message'>Wrong satellite id!</span>
         }
       </>
     }

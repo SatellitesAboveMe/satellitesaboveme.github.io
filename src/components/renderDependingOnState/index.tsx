@@ -8,7 +8,7 @@ interface RenderDependingOnStateProps {
     state?: RequestState
 }
 
-const deafultErrorComponent = <span>Error!</span>
+const deafultErrorComponent = <span data-testid='error-component'>Error!</span>
 const defaultFetcginComponent = <FetchingComponent />
 
 export const RenderDependingOnState = (props: RenderDependingOnStateProps) => {
