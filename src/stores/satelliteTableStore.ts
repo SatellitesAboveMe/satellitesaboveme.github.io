@@ -1,5 +1,5 @@
 import { makeObservable, runInAction, observable, computed, action } from 'mobx'
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
 import { AboveData, getAboveData, UserFormData } from 'api/above'
 import { RequestState } from 'api/state'
 
@@ -38,3 +38,6 @@ export class SatelliteTableStore {
 
 export const satelliteTableStore = new SatelliteTableStore()
 export const SatelliteTableStoreContext = createContext<SatelliteTableStore>(satelliteTableStore)
+export const useSatelliteTableStore = (): SatelliteTableStore => {
+  return useContext(SatelliteTableStoreContext)
+}

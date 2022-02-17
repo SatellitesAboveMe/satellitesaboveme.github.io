@@ -17,10 +17,14 @@
     "@types/react-dom": "^17.0.11",
     "dotenv": "^16.0.0",
     "mobx": "^6.3.13",
+    "mobx-persist": "^0.4.1",
+    "mobx-persist-store": "^1.0.4",
     "mobx-react-lite": "^3.2.3",
+    "mobx-utils": "^6.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.26.1",
+    "react-markdown": "^8.0.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "sass": "^1.49.7",
@@ -31,7 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!ui-core)/\" --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
