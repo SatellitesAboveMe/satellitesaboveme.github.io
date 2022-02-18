@@ -3,10 +3,15 @@ import { RequestState } from 'api/state'
 import { action } from 'mobx'
 import { satelliteTableStore } from 'stores/satelliteTableStore'
 import { SatellitesTable } from '..'
+import { getAboveDataMock } from 'api/__mocks__/above.mock'
+import * as functionsToMock from 'api/above'
+import { wait } from 'utils/wait'
+import { BrowserRouter } from 'react-router-dom'
 
 describe('SatellitesTable component', () => {
   afterEach(() => {
     jest.clearAllMocks()
+    satelliteTableStore.resetStore()
   })
 
   test('render nothing', () => {
@@ -15,57 +20,30 @@ describe('SatellitesTable component', () => {
     expect(table).toBeNull()
   })
 
-  test('render fetching', () => {
-    const container = render(<SatellitesTable />)
-    const updateState = action((state?: RequestState) => {
-      state = RequestState.Fetching
-    })
-    updateState(satelliteTableStore.state)
-    waitFor(() => expect(container.getByTestId('skeletons')))
+  test('render fetching', async () => {
+    satelliteTableStore.state = RequestState.Fetching
+    const container = render(
+      <BrowserRouter>
+        <SatellitesTable />
+      </BrowserRouter>
+    )
+    await waitFor(() => expect(container.getByTestId('skeletons')))
   })
 
-  test('render table', () => {
-    const container = render(<SatellitesTable />)
-    jest.spyOn(global, 'fetch').mockImplementation(() => {
-      return Promise.resolve({
-        json: () => ({
-          info: {
-            category: 'Amateur radio',
-            transactionscount: 17,
-            satcount: 3
-          },
-          above: [
-            {
-              satid: 20480,
-              satname: 'JAS 1B (FUJI 2)',
-              intDesignator: '1990-013C',
-              launchDate: '1990-02-07',
-              satlat: 49.5744,
-              satlng: -96.7081,
-              satalt: 1227.9326
-            },
-            {
-              satid: 26609,
-              satname: 'AMSAT OSCAR 40',
-              intDesignator: '2000-072B',
-              launchDate: '2000-11-16',
-              satlat: 5.5105,
-              satlng: -21.4478,
-              satalt: 49678.6389
-            },
-            {
-              satid: 40719,
-              satname: 'DEORBITSAIL',
-              intDesignator: '2015-032E',
-              launchDate: '2015-07-10',
-              satlat: 43.8106,
-              satlng: -90.3944,
-              satalt: 657.5516
-            }
-          ]
-        })
-      })
+  test('render table', async () => {
+    const mock = jest.spyOn(functionsToMock, 'getAboveData').mockImplementation(getAboveDataMock)
+    const container = render(
+      <BrowserRouter>
+        <SatellitesTable />
+      </BrowserRouter>
+    )
+    satelliteTableStore.fetchData({
+      latitude: 0,
+      longitude: 0,
+      radius: 0,
+      category: 1
     })
-    waitFor(() => expect(container.getByRole('table')).toBeInTheDocument())
+    await waitFor(() => expect(container.getByRole('table')).toBeInTheDocument(), { timeout: 5000 })
+    mock.mockClear()
   })
 })

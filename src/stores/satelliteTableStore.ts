@@ -34,6 +34,12 @@ export class SatelliteTableStore {
       })
     }
   }
+
+  @action.bound
+  resetStore () {
+    this.state = undefined
+    this.satelliteDataRaw = undefined
+  }
 }
 
 export const satelliteTableStore = new SatelliteTableStore()
