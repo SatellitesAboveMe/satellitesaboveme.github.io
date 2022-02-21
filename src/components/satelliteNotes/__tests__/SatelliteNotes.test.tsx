@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react'
-import SatelliteNotes from '..'
+import SatelliteNotes from 'components/satelliteNotes'
 
 describe('SatelliteNotes component', () => {
     test('render form', () => {
