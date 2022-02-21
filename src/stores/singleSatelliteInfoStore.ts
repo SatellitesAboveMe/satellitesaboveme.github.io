@@ -39,8 +39,8 @@ export class SingleSatelliteDataStore {
 
     @action.bound
     resetStore () {
-       this.singleSatelliteData = undefined
-       this.state = undefined
+      this.singleSatelliteData = undefined
+      this.state = undefined
     }
 }
 
