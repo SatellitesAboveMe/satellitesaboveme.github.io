@@ -56,6 +56,12 @@ export class SatelliteNotesStore {
       this.notesStore = new ObservableMap(object)
     }
   }
+
+  @action.bound
+  resetStore () {
+    this.notesStore = new ObservableMap({})
+    localStorage.removeItem('SatelliteNotesStore')
+  }
 }
 
 export const satelliteNotesStore = new SatelliteNotesStore()
