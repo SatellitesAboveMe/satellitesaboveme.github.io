@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 import { LocationForm } from 'components/locationForm'
 
 test('location form component', () => {
@@ -22,4 +22,6 @@ test('location form component', () => {
   fireEvent.change(inputRadius, { target: { value: 999 } })
   expect(inputRadius).toHaveValue('999')
 
+  const selectCategoryInput = container.getByLabelText('Satellite category')
+  expect(selectCategoryInput).toBeInTheDocument()
 })

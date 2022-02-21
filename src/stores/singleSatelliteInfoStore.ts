@@ -36,6 +36,12 @@ export class SingleSatelliteDataStore {
         })
       }
     }
+
+    @action.bound
+    resetStore () {
+       this.singleSatelliteData = undefined
+       this.state = undefined
+    }
 }
 
 export const singleSatelliteInfoStore = new SingleSatelliteDataStore()

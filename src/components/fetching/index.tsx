@@ -2,11 +2,11 @@ import { Skeleton } from '@mui/material'
 
 export const FetchingComponent = () => {
   return (
-    <>
-    <Skeleton />
-    <Skeleton />
-    <Skeleton />
-    <Skeleton />
-    </>
+    <div data-testid="skeletons">
+      <Skeleton/>
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+    </div>
   )
 }

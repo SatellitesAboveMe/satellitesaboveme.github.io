@@ -26,7 +26,7 @@ const TableComponent = ({ satelliteData }: {satelliteData: SingleSatelliteData[]
   const classes = useStyles()
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="simple table">
+      <Table aria-label="satellites table">
         <TableHead>
           <TableRow>
             <TableCell align="right">Id</TableCell>
@@ -69,7 +69,7 @@ const SatelliteTableComponent = observer(() => {
   />
 })
 
-export const SatelliteTable = () => (
+export const SatellitesTable = () => (
     <SatelliteTableStoreContext.Provider value={satelliteTableStore}>
         <SatelliteTableComponent />
     </SatelliteTableStoreContext.Provider>
