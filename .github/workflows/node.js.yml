@@ -30,6 +30,8 @@ jobs:
     - run: npm test
     - run: npm run build
     - run: |
+        git pull
+        git pull
         git config --global user.name 'akechahmadze'
         git config --global user.email 'satellitesaboveme.github.io@noreply.github.com'
         git commit -am "New build"
