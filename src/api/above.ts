@@ -38,6 +38,6 @@ export const satelliteCategories: SatelliteCategory[] = [
 ]
 
 export const getAboveData = async ({ latitude, longitude, radius, category }: UserFormData): Promise<AboveData> => {
-  return fetch(`https://api.n2yo.com/rest/v1/satellite/above/${latitude}/${longitude}/0/${radius}/${category}?apiKey=${process.env.REACT_APP_N2YO_API_KEY}`)
+  return fetch(`https://n2yo.aboveme.workers.dev/api/above/${latitude}/${longitude}/${radius}/${category}`)
     .then(response => response.json())
 }
