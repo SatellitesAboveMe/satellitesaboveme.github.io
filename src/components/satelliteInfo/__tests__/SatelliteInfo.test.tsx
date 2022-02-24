@@ -13,6 +13,7 @@ describe('SatelliteInfo component', () => {
 
   test('bad request', async () => {
     const container = render(<SatelliteInfo />)
+    await wait(2000)
     await waitFor(() => expect(container.getByTestId('error-component')).toBeInTheDocument())
   })
 
