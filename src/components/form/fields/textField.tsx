@@ -1,6 +1,6 @@
 import { Controller, FieldValues, Path } from 'react-hook-form'
 import { FormFieldProps } from './types'
-import { TextField as TextFieldMUI } from '@mui/material'
+import { StandardTextFieldProps, TextField as TextFieldMUI } from '@mui/material'
 
 interface TextFieldProps<FormValues> {
     label: string;
@@ -9,11 +9,14 @@ interface TextFieldProps<FormValues> {
     margin?: string;
 }
 
-export const TextField = <FormValues extends FieldValues>(props: FormFieldProps<FormValues> & TextFieldProps<FormValues>) => {
+export const TextField = <FormValues extends FieldValues>(
+  props: FormFieldProps<FormValues> & TextFieldProps<FormValues> & StandardTextFieldProps
+) => {
   const {
     name,
     control,
-    label
+    label,
+    ...inputProps
   } = props
 
   return (
@@ -22,7 +25,7 @@ export const TextField = <FormValues extends FieldValues>(props: FormFieldProps<
             control={control}
             render={({ field, fieldState: { error } }) => {
               const value = field.value || ''
-              return <TextFieldMUI error={!!error} helperText={error?.message} id={name} label={label} variant="outlined" margin="normal" {...field} value={value} />
+              return <TextFieldMUI error={!!error} helperText={error?.message} id={name} label={label} variant="outlined" margin="normal" {...inputProps} {...field} value={value} />
             }}
         />
   )

@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button, FormGroup } from '@mui/material'
+import { FormGroup } from '@mui/material'
 import React from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { object as yupObject } from 'yup'
@@ -30,7 +30,6 @@ export const Form = <FormValues extends FieldValues>(props: FormProps<FormValues
                       return React.cloneElement(child, { control, setValue, getValues })
                     })
                 }
-                <Button variant="contained" type="submit">Find satellites above me!</Button>
             </FormGroup>
         </form>
   )
