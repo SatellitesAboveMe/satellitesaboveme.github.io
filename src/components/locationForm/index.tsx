@@ -30,7 +30,7 @@ export const LocationForm = () => {
         <TextField name="longitude" label="Longitude" margin='normal'/>
         <Button title="Get my location" onClick={getLocationAutomatically}/>
         <TextField name="radius" label="Radius of search" margin='normal' />
-        <SelectField name='category' label='Category' margin='normal'>
+        <SelectField name='category' label='Satellite category' margin='normal'>
           {
             satelliteCategories.map(
               satelliteCategory => <MenuItem key={satelliteCategory.id} value={satelliteCategory.id}>{satelliteCategory.name}</MenuItem>
