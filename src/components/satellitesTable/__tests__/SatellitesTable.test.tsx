@@ -43,7 +43,7 @@ describe('SatellitesTable component', () => {
       radius: 0,
       category: 1
     })
-    await waitFor(() => expect(container.getByRole('table')).toBeInTheDocument(), { timeout: 5000 })
+    await waitFor(() => expect(container.getByRole('grid')).toBeInTheDocument(), { timeout: 5000 })
     mock.mockClear()
   })
 })
