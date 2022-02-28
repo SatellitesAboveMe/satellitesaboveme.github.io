@@ -42,7 +42,7 @@ const TableComponent = ({ satelliteData }: { satelliteData: SingleSatelliteData[
   )
 }
 
-const SatelliteTableComponent = observer(() => {
+export const SatellitesTable = observer(() => {
   const table = useSatelliteTableStore()
 
   const { satelliteData, state } = table
@@ -52,9 +52,3 @@ const SatelliteTableComponent = observer(() => {
     InfoComponent={<TableComponent satelliteData={satelliteData} />}
   />
 })
-
-export const SatellitesTable = () => (
-  <SatelliteTableStoreContext.Provider value={satelliteTableStore}>
-    <SatelliteTableComponent />
-  </SatelliteTableStoreContext.Provider>
-)
