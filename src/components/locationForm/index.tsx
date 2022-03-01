@@ -7,6 +7,7 @@ import { Form } from 'components/form'
 import { TextField } from 'components/form/fields/textField'
 import { Button } from 'components/form/fields/button'
 import { SelectField } from 'components/form/fields/select'
+import { SubmitButton } from 'components/form/fields/submitButton'
 
 export const LocationForm = () => {
   const onSubmit = (values: UserFormData) => {
@@ -37,6 +38,7 @@ export const LocationForm = () => {
             )
           }
         </SelectField>
+        <SubmitButton title='Get satellites above me!'/>
       </Form>
     </Box>
   )
