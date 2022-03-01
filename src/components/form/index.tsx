@@ -23,7 +23,7 @@ export const Form = <FormValues extends FieldValues>(props: FormProps<FormValues
   })
 
   return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} data-testid='test-form'>
             <FormGroup>
                 {
                     React.Children.map(children, child => {

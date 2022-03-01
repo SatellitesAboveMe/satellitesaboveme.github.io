@@ -32,32 +32,6 @@ export const NotesForm = (props: NotesFormProps) => {
     values.text && satelliteNotesStore.addSatelliteNote(id, values)
   }
 
-  // const { control, handleSubmit } = useForm<NoteSubmitData>({
-  //   resolver: yupResolver(validationScheme)
-  // })
-
-  // return (
-  //   <Box mb={4}>
-  //     <form onSubmit={handleSubmit(onSubmit)}>
-  //       <FormGroup>
-  //         <Controller
-  //           name='title'
-  //           control={control}
-  //           render={props => <ControlledTextField id={'title'} label={'Title'} inputProps={{ maxLength: 25 }} {...props} />}
-  //         />
-  //         <Controller
-  //           name='text'
-  //           control={control}
-  //           render={props => <ControlledTextField id={'text'} label={'Text'} multiline minRows={3} inputProps={{ maxLength: 400 }}
-  //             InputProps={{ endAdornment: <MDTooltip /> }}
-  //             {...props} />}
-  //         />
-  //         <Button variant="contained" type="submit">Save note</Button>
-  //       </FormGroup>
-  //     </form>
-  //   </Box>
-  // )
-
   return (
     <Box mb={4}>
       <Form onSubmit={onSubmit} validationScheme={validationScheme}>
