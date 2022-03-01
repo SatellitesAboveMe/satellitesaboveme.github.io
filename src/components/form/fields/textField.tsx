@@ -16,6 +16,10 @@ export const TextField = <FormValues extends FieldValues>(
     name,
     control,
     label,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    getValues,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setValue,
     ...inputProps
   } = props
 
