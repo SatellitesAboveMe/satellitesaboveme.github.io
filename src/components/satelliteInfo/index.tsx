@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { TLETable } from 'components/tleTable'
-import { singleSatelliteInfoStore, useSingleSatelliteInfoStore, SingleSatelliteInfoStoreContext, SingleSatelliteDataStore } from '../../stores/singleSatelliteInfoStore'
+import { useSingleSatelliteInfoStore, SingleSatelliteDataStore } from '../../stores/singleSatelliteInfoStore'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { RenderDependingOnState } from 'components/renderDependingOnState'
@@ -38,7 +38,7 @@ const InfoComponent = ({ id, satelliteData }: InfoComponentProps) => {
   }
 }
 
-const SingleSatelliteInfoComponent = observer(() => {
+export const SatelliteInfo = observer(() => {
   const singleSatelliteInfo = useSingleSatelliteInfoStore()
 
   const { state } = singleSatelliteInfo
@@ -65,9 +65,3 @@ const SingleSatelliteInfoComponent = observer(() => {
     }
   />
 })
-
-export const SatelliteInfo = () => (
-  <SingleSatelliteInfoStoreContext.Provider value={singleSatelliteInfoStore}>
-    <SingleSatelliteInfoComponent />
-  </SingleSatelliteInfoStoreContext.Provider>
-)

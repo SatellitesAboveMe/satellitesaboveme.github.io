@@ -1,4 +1,4 @@
-import { SatelliteNotesStoreContext, satelliteNotesStore, useSatelliteNotesStore } from 'stores/satelliteNotesStore'
+import { useSatelliteNotesStore } from 'stores/satelliteNotesStore'
 import { NotesForm } from 'components/notesForm'
 import { observer } from 'mobx-react-lite'
 import { Note } from 'components/satelliteNotes/note'
@@ -8,7 +8,7 @@ interface SatelliteNotesProps {
   id: number
 }
 
-const SatelliteNotesComponent = observer((props: SatelliteNotesProps) => {
+const SatelliteNotes = observer((props: SatelliteNotesProps) => {
   const { id } = props
 
   const notesStore = useSatelliteNotesStore()
@@ -33,11 +33,5 @@ const SatelliteNotesComponent = observer((props: SatelliteNotesProps) => {
     </>
   )
 })
-
-const SatelliteNotes = (props: SatelliteNotesProps) => (
-  <SatelliteNotesStoreContext.Provider value={satelliteNotesStore}>
-    <SatelliteNotesComponent id={props.id} />
-  </SatelliteNotesStoreContext.Provider>
-)
 
 export default SatelliteNotes
