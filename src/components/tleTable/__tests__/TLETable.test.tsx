@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { parseTLE } from 'utils/parseTLE'
 import { TLETable } from '..'
 

@@ -1,4 +1,4 @@
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { RequestState } from 'api/state'
 import { RenderDependingOnState } from 'components/renderDependingOnState'
 

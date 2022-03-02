@@ -24,7 +24,7 @@ describe('Main component test', () => {
   })
 
   test('render datagrid', async () => {
-    const mock = jest.spyOn(functionsToMock, 'getAboveData').mockImplementation(getAboveDataMock)
+    jest.spyOn(functionsToMock, 'getAboveData').mockImplementation(getAboveDataMock)
     const container = render(<Main/>)
     satelliteTableStore.fetchData({
       latitude: 0,

@@ -1,6 +1,7 @@
 import { TLEData } from 'api/tle'
 import { wait } from 'utils/wait'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getTleDataMock = async (satelliteId: number): Promise<TLEData> => {
   await wait(2000)
   return {

@@ -7,7 +7,6 @@ import * as TleFunctionsToMock from 'api/tle'
 import { getTleDataMock } from 'api/__mocks__/tle.mock'
 import { BrowserRouter, Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
-import { wait } from 'utils/wait'
 
 describe('App component test', () => {
   afterEach(() => {
@@ -31,7 +30,7 @@ describe('App component test', () => {
                 <App />
             </BrowserRouter>
     )
-    const mock = jest.spyOn(AboveFunctionsToMock, 'getAboveData').mockImplementation(getAboveDataMock)
+    jest.spyOn(AboveFunctionsToMock, 'getAboveData').mockImplementation(getAboveDataMock)
     satelliteTableStore.fetchData({
       latitude: 0,
       longitude: 0,
@@ -44,7 +43,7 @@ describe('App component test', () => {
   })
 
   test('render info', async () => {
-    const mock = jest.spyOn(TleFunctionsToMock, 'getTleData').mockImplementation(getTleDataMock)
+    jest.spyOn(TleFunctionsToMock, 'getTleData').mockImplementation(getTleDataMock)
     const history = createMemoryHistory()
     history.push('/satelliteInfo/123')
     const container = render(
