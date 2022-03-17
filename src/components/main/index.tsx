@@ -6,7 +6,7 @@ import { SatellitesTable } from 'components/satellitesTable'
 export const Main = () => {
   return (
     <Container fixed>
-        <h1>Input your location</h1>
+        <h1 data-testid='h1-test'>Input your location</h1>
         <LocationForm />
         <SatellitesTable />
     </Container>

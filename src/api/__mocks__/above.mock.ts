@@ -1,6 +1,7 @@
 import { AboveData, UserFormData } from 'api/above'
 import { wait } from 'utils/wait'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getAboveDataMock = async (params: UserFormData): Promise<AboveData> => {
   await wait(2000)
   return {

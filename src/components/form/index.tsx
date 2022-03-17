@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormGroup } from '@mui/material'
-import React from 'react'
+import { Children, cloneElement } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { object as yupObject } from 'yup'
 import { FormFieldComponent } from './fields/types'
@@ -23,11 +23,11 @@ export const Form = <FormValues extends FieldValues>(props: FormProps<FormValues
   })
 
   return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} data-testid='test-form'>
             <FormGroup>
                 {
-                    React.Children.map(children, child => {
-                      return React.cloneElement(child, { control, setValue, getValues })
+                    Children.map(children, child => {
+                      return cloneElement(child, { control, setValue, getValues })
                     })
                 }
             </FormGroup>

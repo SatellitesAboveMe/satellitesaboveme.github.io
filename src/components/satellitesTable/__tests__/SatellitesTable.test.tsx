@@ -1,11 +1,9 @@
 import { render, waitFor } from '@testing-library/react'
 import { RequestState } from 'api/state'
-import { action } from 'mobx'
 import { satelliteTableStore } from 'stores/satelliteTableStore'
 import { SatellitesTable } from '..'
 import { getAboveDataMock } from 'api/__mocks__/above.mock'
 import * as functionsToMock from 'api/above'
-import { wait } from 'utils/wait'
 import { BrowserRouter } from 'react-router-dom'
 
 describe('SatellitesTable component', () => {
